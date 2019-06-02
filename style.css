@@ -363,3 +363,14 @@ z-index: 150;
 	margin-top: 30px;
 	text-align: center;
 }
+
+/*底部*/
+.buttom_section {
+	min-height: 20px;
+	height: auto!important;
+	background-color:white;
+}
+
+.buttom_section p{
+	text-align: center;font-family: 'setofont'
+}
