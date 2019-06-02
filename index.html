@@ -1,0 +1,209 @@
+ <!DOCTYPE html>
+<html lang="de-CH">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="./style.css">
+<link href="https://fonts.googleapis.com/css?family=Pacifico|Rubik" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<!--START META DATA PAGE DESCRIPTION-->
+<meta name="Author" content="Calmar Solutions Schweiz - Erin McGowan - www.calmarsolutions.ch">
+<meta name="Copyright" content="Calmar Solutions">
+<meta name="Credit" content="https://thenounproject.com/">
+<meta name="description" content="Margs Surfcamp Margaret River">
+<meta name="keywords" content="Surfing, Camping, Margaret River, Western Australia">
+<!--END META DATA PAGE DESCRIPTION-->
+<title>OnePage Gradient Template</title>
+</head>
+<body>
+
+<script src="https://www.gstatic.com/firebasejs/6.1.0/firebase.js"></script>
+<script src="https://www.gstatic.com/firebasejs/6.1.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/6.1.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/6.1.0/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/6.1.0/firebase-database.js"></script>
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyBwNlQQiHjSu3WDDP4iHDf6nHODHqpVmtE",
+    authDomain: "hehehe-2277b.firebaseapp.com",
+    databaseURL: "https://hehehe-2277b.firebaseio.com",
+    projectId: "hehehe-2277b",
+    storageBucket: "hehehe-2277b.appspot.com",
+    messagingSenderId: "117060678979",
+    appId: "1:117060678979:web:47f98714671c6518"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  //var gotref = firebase.database;
+  //var otherDatabase = firebase.database('PB');
+  window.onload = realimg;
+  
+  var carry_count = 0;
+  
+  function realimg(){
+  getDataAmount().then(function(snapshot) {
+	var count = snapshot.numChildren();
+	
+	var i = 1;
+	
+	do{
+    getImgSrc(i);
+	//document.getElementById("demo").innerText = flag;
+	i++;
+	}while(i <= count);
+  
+	});
+  //count = getDataAmount();
+  //document.getElementById("demo").innerText = count;
+  
+  }
+  
+  function getDataAmount(){ 
+	var ref_0 = firebase.database().ref("PB");
+	return ref_0.once('value');
+  }
+  
+  function getImgSrc(c){
+	var ref = firebase.database().ref("PB/" + c);
+	ref.once('value').then(function(snapshot) {
+	//document.getElementById("demo").innerText = snapshot.numChildren();
+	insert_new_box(c);
+    var imgurl = snapshot.val().img;
+	insert_new_option(snapshot.val().name,c);
+	document.getElementById("prod" + c).style.backgroundImage = "url(" + imgurl + ")";
+	document.getElementById("prod" + c + "_n").innerText = snapshot.val().name;
+	document.getElementById("prod" + c + "_p").innerText = "售價:" + snapshot.val().price;
+	});
+	}
+</script>
+
+
+
+<a href="#top"><img class="arrow_image" src="./images/arrow.svg"></a>
+<a name="top"></a>
+<div id="change_class" class="flex_container section menu_section">
+	<div class="flex_item branding"><p></p></div>
+	<div class="flex_item menu_item dropdown">
+		<p>Menu</p>
+		<div class="dropdown-content">
+			<div class="menu_item menu_item_inside"><a href="#top"><p>主頁</p></a></div>
+			<a href=""><div class="menu_item menu_item_inside"><a href="#team"><p>產品</p></a></div>
+			<a href=""><div class="menu_item menu_item_inside"><a href="#contact"><p>訂購</p></a></div>
+		</div>
+	</div>
+	<div class="flex_item menu_item menu_item_outside"><a href="#top"><p>主頁</p></a></div>
+	<div class="flex_item menu_item menu_item_outside"><a href="#team"><p>商品</p></a></div>
+	<div class="flex_item menu_item menu_item_outside"><a href="#contact"><p>訂購</p></a></div></a>
+</div>
+
+<div class="section page header_section">
+<div class="gradient gradient_red_blue gradient_header_section"></div>
+	<div class="section_container header_section_container flex_container flex_header_container">
+		<div class="text header_text">
+			<h1>屏東俊哥玩具工房</h1>
+		</div>
+		
+		<div class="text body_text flex_item flex_header_item">
+			<h2 class="header_quote">用情慾包覆玩具<br>用玩具刺激性趣</h2>
+		</div>
+	</div>
+</div>
+
+<div class="section page second_section">
+<a name="team"></a>
+	<div class="section_container second_section_container flex_container flex_center" id="info_box_list">
+		<div class="text header_text text_grad_purple_yellow">
+			<h1 id="demo">Our Product</h1>
+		</div>
+		
+		<script>
+		function insert_new_box(a){
+			var nb = document.getElementById("info_box_list");
+			var add_a_tag = document.createElement("a");
+			add_a_tag.setAttribute('href',"javascript: void(0)");
+			add_a_tag.setAttribute('onclick',"loadpit("+'"'+a+'"'+")");
+			add_a_tag.setAttribute('class',"select_opt");
+			nb.appendChild(add_a_tag);
+			var add_a_div_1 = document.createElement("div");
+			add_a_div_1.setAttribute('class',"feature flex_feature_item");
+			add_a_tag.appendChild(add_a_div_1);
+			var add_a_div_2 = document.createElement("div");
+			add_a_div_2.setAttribute('class','feature_image');
+			add_a_div_2.setAttribute('id','prod'+ a );
+			add_a_div_1.appendChild(add_a_div_2);
+			var add_h3 = document.createElement("h3");
+			add_h3.setAttribute('id','prod'+ a + '_n' );
+			add_h3.innerHTML='.....';
+			add_a_div_1.appendChild(add_h3);
+			var add_p = document.createElement("p");
+			add_p.setAttribute('id','prod'+ a + '_p' );
+			add_p.innerHTML='.....';
+			add_a_div_1.appendChild(add_p);
+
+			
+			/*document.getElementById('new_box_' + a).innerText('<div class="feature flex_feature_item">');
+			document.getElementById('new_box_' + a).innerText('<div class="feature_image" id="prod'+ a +'"></div>');
+			document.getElementById('new_box_' + a).innerText('<h3 id="prod'+ a + '_n">.....</h3>');
+			document.getElementById('new_box_' + a).innerText('<p id="prod'+ a + '_p">.....</p>');
+			document.getElementById('new_box_' + a).innerText('</div>');*/
+			
+			/*document.write('<a href="#link'+ a +'">');
+			document.write('<div class="feature flex_feature_item">');
+			document.write('<div class="feature_image" id="prod'+ a +'"></div>');
+			document.write('<h3 id="prod'+ a + '_n">.....</h3>');
+			document.write('<p id="prod'+ a + '_p">.....</p>');
+		document.write('</div>');
+		document.write('</a>');*/
+		}		
+		</script>
+	</div>
+	
+</div>
+
+<div class="section page third_section">
+<a name="contact" id="order_page"></a>
+	<div class="gradient gradient_red_yellow gradient_third_section"></div>
+	<div class="section_container third_section_container flex_container flex_center">
+		<div class="text header_text">
+			<h1>Order</h1>
+		</div>
+		<div class="feature_two offer flex_feature_item offer2">
+			<h2>姓名</h2>
+			<input type = "text" id="sent_name">
+			<h2>單位</h2>
+			<input type = "text" id="sent_unit">
+			<h2>商品</h2>
+			<select id="prod_select">
+			
+		<script>
+			function insert_new_option(n,iD){
+			var nb = document.getElementById("prod_select");
+			var add_a_tag = document.createElement("option");
+			add_a_tag.setAttribute('value',iD);
+			add_a_tag.setAttribute('id',iD);
+			add_a_tag.innerHTML=n;
+			nb.appendChild(add_a_tag);
+		}		
+		</script>
+			
+			</select>
+			<h2>數量</h2>
+			<input type = "text" id="sent_amount">
+			<button onclick="sentOrder()">送出</button>
+		</div>
+		
+	</div>
+</div>
+
+
+<!--SCRIPT SECTION-->
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBE-AatCnNmEzkMZL2Rmqu87zjmDqpU3vA&callback=initMap"></script>
+
+
+
+
+<script src="./script.js"></script>
+
+</body>
+</html> 
