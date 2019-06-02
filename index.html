@@ -55,7 +55,7 @@
   
 	});
   for(var i=1;i<3;i++){
-		var ref = firebase.database().ref("auther/" + i);
+		var ref = firebase.database().ref("author/" + i);
 		ref.once('value').then(function(snapshot) {
 			var info_p = document.getElementById("auth_info");
 			var insert_p = document.createElement("p");
